@@ -3,6 +3,7 @@
 <body>
 	<h1>Log In</h1>
 	<?php
+	echo validation_errors();
 	echo form_open('LogIn/user_login_process');
 	$data = array(
 			'name' => 'username',
