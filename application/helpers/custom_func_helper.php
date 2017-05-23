@@ -15,10 +15,10 @@ function sec_session_start(){
 		$cookieParams['domain'],
 		$secure,
 		$httponly);
-	if(isset($_SESSION)){
-		session_destroy();
+	if(!isset($_SESSION)){
+		session_start();
 	}
-	session_start();
 	session_regenerate_id(true);
 }
+
 ?>

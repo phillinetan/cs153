@@ -6,5 +6,9 @@ class Users extends CI_Model{
 		$query = $this->db->get_where('users', array('username' =>$data['username'], 'password' => $data['password']));
 		return $query->result();
 	}
+	public function view_all(){
+		$query = $this->db->select('name', 'birthday')->get_compiled_select();
+		return $query->result();
+	}
 }
 ?>
