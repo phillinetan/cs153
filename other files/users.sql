@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2017 at 04:30 AM
+-- Generation Time: May 23, 2017 at 12:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -23,20 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sessions`
+-- Table structure for table `session_table`
 --
 
-CREATE TABLE `sessions` (
-  `username` varchar(250) NOT NULL,
-  `id` varchar(250) NOT NULL
+CREATE TABLE `session_table` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sessions`
+-- Dumping data for table `session_table`
 --
 
-INSERT INTO `sessions` (`username`, `id`) VALUES
-('superuser', 'mdfs7t2dkopgfnbkvnup1k2u2m0bnk9n');
+INSERT INTO `session_table` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('lrrm5m4o5acj9d9qbrf8cnnssdos92l8', '::1', 1495532257, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439353533323235373b);
 
 -- --------------------------------------------------------
 
@@ -65,11 +67,11 @@ INSERT INTO `users` (`id`, `username`, `name`, `address`, `birthday`, `password`
 --
 
 --
--- Indexes for table `sessions`
+-- Indexes for table `session_table`
 --
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `session_table`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indexes for table `users`
@@ -77,16 +79,6 @@ ALTER TABLE `sessions`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`) USING BTREE,
   ADD UNIQUE KEY `username` (`username`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `sessions`
---
-ALTER TABLE `sessions`
-  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
