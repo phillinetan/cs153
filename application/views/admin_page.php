@@ -4,8 +4,8 @@
 <h1>Logged In as <?php echo $this->session->userdata('name'); ?></h1>
 <div>
 <ul>
-	<li><a href="<?php echo site_url('LogIn/profile'); ?>">My Profile</a></li>
-	<li><a href="<?php echo site_url('LogIn/others');?>">Other Users</a></li>
+	<li><a href="<?php echo site_url('Accounts/profile'); ?>">My Profile</a></li>
+	<li><a href="<?php echo site_url('Accounts/others');?>">Other Users</a></li>
 
 </ul>
 

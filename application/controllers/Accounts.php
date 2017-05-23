@@ -20,7 +20,6 @@ class Accounts extends CI_Controller {
 		}else{
 
 			$this->load->model('users');
-			$this->load->model('sessions');
 			$data = array(
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password'))
@@ -28,18 +27,12 @@ class Accounts extends CI_Controller {
 			$result = $this->users->check_user($data);
 			if ($result != FALSE){
 				$session_data = array(
-					'username' => $result[0]->username,
 					'name' => $result[0]->name,
-					'bday' => $result[0]->birthday,
-					'addr' => $result[0]->address,
-					'logged_in' => true);
+					'username' => $result[0]->username,
+					'logged_in' => true,
+					);
 				$this->session->set_userdata($session_data);
 				sec_session_start();
-				$data = array(
-					'username' => $session_data['username'],
-					'id' => session_id()
-					);
-				$this->sessions->update_session($data);
 				$this->load->view('admin_page');
 			}else{
 				$this->load->view('welcome_message');
@@ -48,8 +41,9 @@ class Accounts extends CI_Controller {
 		}
 	}
 	public function profile(){
-		sec_session_start();
-		$this->session->set_userdata('view_me', true);
+		//sec_session_start();
+		$this->load->model('users');
+		$this->session->name = true;
 		$this->load->view('admin_page');
 	}
 
@@ -58,6 +52,6 @@ class Accounts extends CI_Controller {
 		$this->load->model('users');
 
 	}
-	public function logout
+	public function logout(){}
 
 }
