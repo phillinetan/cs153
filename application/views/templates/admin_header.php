@@ -1,6 +1,6 @@
 <html>
         <head>
-                <title><CENTER>CS 153 Project</CENTER></title>
+                <title>CS 153 Project</title>
         </head>
         <body>
                 <h1>Superuser</h1>
