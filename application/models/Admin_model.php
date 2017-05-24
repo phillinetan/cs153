@@ -32,7 +32,7 @@ class Admin_model extends CI_Model {
             'name' => $this->input->post('name'),
             'address' => $this->input->post('address'),
             'birthday' => $this->input->post('birthday'),
-            'password' => $this->input->post('password'),
+            'password' => md5($this->input->post('password')),
             'user_level' => '2'
         );
         

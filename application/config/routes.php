@@ -53,9 +53,11 @@ $route['default_controller'] = 'Accounts';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$rout['accounts'] = 'accounts';
 $route['admin'] = 'admin';
 $route['admin/create'] = 'admin/create';
 $route['admin/online_users'] = 'admin/online_users';
+$route['admin/logout'] = 'admin/logout';
 $route['admin/edit/(:any)'] = 'admin/edit/$1';
 $route['admin/profile/(:any)'] = 'admin/profile/$1';
 $route['admin/(:any)'] = 'admin/profile/$1';

@@ -3,6 +3,10 @@ class Admin extends CI_Controller {
  
     public function __construct() {
         parent::__construct();
+        if ( ! $this->session->userdata('logged_in'))
+        { 
+            redirect(base_url(). 'index.php/accounts');
+        }
         $this->load->model('admin_model');
     }
  
@@ -99,6 +103,16 @@ class Admin extends CI_Controller {
         $this->admin_model->delete_users($id);        
         redirect( base_url() . 'index.php/admin');        
     }
+    public function logout(){
+    $user_data = $this->session->all_userdata();
+        foreach ($user_data as $key => $value) {
+            if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity') {
+                $this->session->unset_userdata($key);
+            }
+        }
+    session_destroy();
+    redirect(base_url(). 'index.php/accounts');
+}
 
     
 }

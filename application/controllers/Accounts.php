@@ -36,6 +36,7 @@ class Accounts extends CI_Controller {
 				);
 			$result = $this->accounts_model->check_user($data);
 			if ($result != FALSE){
+				//sec_session_start();
 				$session_data = array(
 					'name' => $result[0]->name,
 					'username' => $result[0]->username,
@@ -43,16 +44,15 @@ class Accounts extends CI_Controller {
 					'level' => $result[0]->user_level
 					);
 				$this->session->set_userdata($session_data);
-				sec_session_start();
 				$this->sessions_model->update_session($session_data['username']);
 				if ($this->session->level == 1){
 					redirect( base_url() . 'index.php/admin'); 
 				}
 				else{
-					$this->load->view('admin_page'); //temporary 
+					redirect( base_url() . 'index.php/users');; //temporary 
 				}
 			}else{
-				$this->load->view('welcome_message');
+				$this->load->view('login_form');
 			}
 
 		}
@@ -69,7 +69,5 @@ class Accounts extends CI_Controller {
 		$this->load->model('accounts_model');
 
 	}
-	public function logout(){}
-
-}
+	
 ?>
