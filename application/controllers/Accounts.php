@@ -6,7 +6,16 @@ class Accounts extends CI_Controller {
 	public function index()
 	{
 		sec_session_start();
-		$this->load->view('login_form');
+		if (isset($this->session->level)){
+			if ($this->session->level == 1){
+				redirect( base_url() . 'index.php/admin'); 
+			}else{
+				$this->load->view('user/profile');
+			}
+		}else{
+			$this->load->view('login_form');
+		}
+		
 	}
 
 	public function user_login_process(){
@@ -19,21 +28,27 @@ class Accounts extends CI_Controller {
 			
 		}else{
 
-			$this->load->model('users');
+			$this->load->model('accounts_model');
 			$data = array(
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password'))
 				);
-			$result = $this->users->check_user($data);
+			$result = $this->accounts_model->check_user($data);
 			if ($result != FALSE){
 				$session_data = array(
 					'name' => $result[0]->name,
 					'username' => $result[0]->username,
 					'logged_in' => true,
+					'level' => $result[0]->user_level
 					);
 				$this->session->set_userdata($session_data);
 				sec_session_start();
-				$this->load->view('admin_page');
+				if ($this->session->level == 1){
+					redirect( base_url() . 'index.php/admin'); 
+				}
+				else{
+					$this->load->view('admin_page'); //temporary 
+				}
 			}else{
 				$this->load->view('welcome_message');
 			}
@@ -42,16 +57,17 @@ class Accounts extends CI_Controller {
 	}
 	public function profile(){
 		//sec_session_start();
-		$this->load->model('users');
+		$this->load->model('accounts_model');
 		$this->session->name = true;
 		$this->load->view('admin_page');
 	}
 
 	public function others(){
 		sec_session_start();
-		$this->load->model('users');
+		$this->load->model('accounts_model');
 
 	}
 	public function logout(){}
 
 }
+?>

@@ -1,3 +1,7 @@
+AllowOverride Options
+AllowOverride All
+
+php_value session.gc_divisor 10
 <IfModule authz_core_module>
     Require all denied
 </IfModule>

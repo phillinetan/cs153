@@ -2,8 +2,7 @@
 function sec_session_start(){
 	$session_name = 'sec_session_id';
 	session_name($session_name);
-	$secure = true;
-	$httponly = true;
+	$httponly = isset($secure) ? $secure : isset($_SERVER['HTTPS']);
 
 	if (ini_set('session.use_only_cookies', 1) === FALSE){
 		exit();
@@ -13,7 +12,7 @@ function sec_session_start(){
 	session_set_cookie_params($cookieParams['lifetime'],
 		$cookieParams['path'],
 		$cookieParams['domain'],
-		$secure,
+		true,
 		$httponly);
 	if(!isset($_SESSION)){
 		session_start();

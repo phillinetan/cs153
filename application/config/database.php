@@ -76,7 +76,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost; username=any; dbname=users; charset=utf8',
 	'hostname' => 'localhost',
-	'username' => 'any',
+	'username' => 'root',
 	'password' => '',
 	'database' => '',
 	'dbdriver' => 'PDO',
