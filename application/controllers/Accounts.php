@@ -29,6 +29,7 @@ class Accounts extends CI_Controller {
 		}else{
 
 			$this->load->model('accounts_model');
+			$this->load->model('sessions_model');
 			$data = array(
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password'))
@@ -43,6 +44,7 @@ class Accounts extends CI_Controller {
 					);
 				$this->session->set_userdata($session_data);
 				sec_session_start();
+				$this->sessions_model->update_session($session_data['username']);
 				if ($this->session->level == 1){
 					redirect( base_url() . 'index.php/admin'); 
 				}
@@ -63,7 +65,7 @@ class Accounts extends CI_Controller {
 	}
 
 	public function others(){
-		sec_session_start();
+		//sec_session_start();
 		$this->load->model('accounts_model');
 
 	}

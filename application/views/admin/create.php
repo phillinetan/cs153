@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td><label for="birthday">birthday</label></td>
-            <td><input type="input" name="birthday" size="20" /></td>
+            <td><input type="date" name="birthday" size="20" /></td>
         </tr>
         <tr>
             <td><label for="password">password</label></td>

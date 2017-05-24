@@ -40,7 +40,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('birthday', 'Birthday', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
  
-        if ($this->form_validation->run() === FALSE){
+        if ($this->form_validation->run() == FALSE){
             $this->load->view('templates/admin_header', $data);
             $this->load->view('admin/create');
         }
@@ -58,9 +58,7 @@ class Admin extends CI_Controller {
             show_404();
         }
         
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        
+ 
         $data['title'] = 'Edit a User';        
         $data['users_item'] = $this->admin_model->get_users_by_id($id);
         
@@ -76,8 +74,17 @@ class Admin extends CI_Controller {
         else{
             $this->admin->set_users($id);
             //$this->load->view('users/success');
-            redirect( base_url() . 'index.php/admin_model');
+            redirect( base_url() . 'index.php/admin');
         }
+    }
+
+    public function online_users(){
+    	$data['title'] = 'Online Users';
+    	$this->load->view('templates/admin_header', $data);
+    	$this->load->model('sessions_model');  
+    	$data['users'] = $this->sessions_model->online_users(time()); 
+    	$this->load->view('admin/online', $data); 
+
     }
     
     public function delete(){
@@ -92,5 +99,7 @@ class Admin extends CI_Controller {
         $this->admin_model->delete_users($id);        
         redirect( base_url() . 'index.php/admin');        
     }
+
+    
 }
 ?>

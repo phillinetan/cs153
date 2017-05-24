@@ -55,9 +55,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'admin';
 $route['admin/create'] = 'admin/create';
+$route['admin/online_users'] = 'admin/online_users';
 $route['admin/edit/(:any)'] = 'admin/edit/$1';
 $route['admin/profile/(:any)'] = 'admin/profile/$1';
 $route['admin/(:any)'] = 'admin/profile/$1';
+
 
 $route['users'] = 'users';
 $route['users/profile/(:any)'] = 'users/profile/$1';
