@@ -18,7 +18,7 @@ class Users extends CI_Controller {
         $this->load->view('users/index', $data);
     }
  
-    public function view($id = NULL){
+    public function profile($id = NULL){
         $data['users_item'] = $this->user_model->get_users($id);
         
         if (empty($data['users_item'])){

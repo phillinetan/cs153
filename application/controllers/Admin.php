@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/index', $data);
     }
  
-    public function view($id = NULL){
+    public function profile($id = NULL){
         $data['users_item'] = $this->admin_model->get_users($id);
         
         if (empty($data['users_item'])){
