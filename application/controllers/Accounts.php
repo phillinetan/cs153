@@ -13,7 +13,7 @@ class Accounts extends CI_Controller {
 				$this->load->view('user/profile');
 			}
 		}else{
-			$this->load->view('login_form');
+			$this->user_login_process();
 		}
 		
 	}
