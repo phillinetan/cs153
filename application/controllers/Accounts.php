@@ -13,6 +13,7 @@ class Accounts extends CI_Controller {
 				$this->load->view('user/profile');
 			}
 		}else{
+
 			$this->user_login_process();
 		}
 		
@@ -23,6 +24,7 @@ class Accounts extends CI_Controller {
 		return $count[0]->attempts;
 	}
 	public function user_login_process(){
+		$data['error_msg']='';
 		$attempts = $this->check_attempt();
         if ($attempts >=3){
         	$data['error_msg'] = "too many attempts. try again after 10 minutes";
@@ -69,6 +71,7 @@ class Accounts extends CI_Controller {
 						'time' => time()
 						);
 					$this->attempts_model->add_attempt($attempt);
+					
 					$this->load->view('login_form');
 				}
 
