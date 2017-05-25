@@ -4,6 +4,7 @@
 	<h1>Log In</h1>
 	<?php
 	echo validation_errors();
+	echo isset($error_msg) ? $error_msg: '';
 	echo $this->session->userdata('timestamp');
 	echo form_open('Accounts/user_login_process');
 	$data = array(
