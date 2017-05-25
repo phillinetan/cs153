@@ -64,5 +64,7 @@ $route['admin/(:any)'] = 'admin/profile/$1';
 
 
 $route['users'] = 'users';
+$route['users/online_users'] = 'users/online_users';
+$route['users/logout'] = 'users/logout';
 $route['users/profile/(:any)'] = 'users/profile/$1';
 $route['users/(:any)'] = 'users/profile/$1';
